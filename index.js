@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
 const port = 3000;
+const config = require("./config.json");
 
 app.set("view engine", "ejs");
 app.set("views", "./views");
@@ -10,9 +11,7 @@ app.use(express.static("public"));
 
 //Database
 mongoose
-  .connect(
-    "mongodb+srv://everyone:9898513203@cluster0.fq5kd.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
-  )
+  .connect(config.url)
   .then(() => console.log("Connecting to MongoDb"))
   .catch((err) => console.error("Could not connect to MongoDB", err));
 
